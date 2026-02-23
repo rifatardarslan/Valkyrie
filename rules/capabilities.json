@@ -1,0 +1,63 @@
+{
+    "Downloader": {
+        "description": "The file contains capabilities to download data from the internet.",
+        "imports": [
+            "URLDownloadToFile",
+            "InternetOpen",
+            "wininet.dll",
+            "ws2_32.dll"
+        ]
+    },
+    "Ransomware": {
+        "description": "The file contains cryptographic APIs often used for extortion.",
+        "imports": [
+            "CryptEncrypt",
+            "CryptGenKey",
+            "advapi32.dll"
+        ]
+    },
+    "Keylogger": {
+        "description": "The file hooks user input.",
+        "imports": [
+            "SetWindowsHookEx",
+            "GetAsyncKeyState"
+        ]
+    },
+    "Wiper": {
+        "description": "The file interacts with low-level disk access to destroy data.",
+        "imports": [
+            "DeviceIoControl",
+            "FSCTL_GET_RETRIEVAL_POINTERS"
+        ],
+        "strings": [
+            "\\\\.\\PhysicalDrive0",
+            "vssadmin delete shadows"
+        ]
+    },
+    "Injection": {
+        "description": "The file attempts to inject code into other processes.",
+        "imports": [
+            "VirtualAllocEx",
+            "WriteProcessMemory",
+            "CreateRemoteThread"
+        ]
+    },
+    "Evasion": {
+        "description": "The file actively evades virtual environments or analysis.",
+        "strings": [
+            "VMWare",
+            "VBox",
+            "qemu"
+        ]
+    },
+    "Command & Control (C2)": {
+        "description": "The file has network sockets capable of beaconing.",
+        "imports": [
+            "socket",
+            "connect",
+            "send",
+            "recv",
+            "WSAStartup"
+        ]
+    }
+}

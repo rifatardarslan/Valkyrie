@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "valkyrie"
+version = "0.1.0"
+description = "Professional-grade CLI Malware Analyzer for PE and ELF files."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "click>=8.1.7",
+    "pefile>=2023.2.7",
+    "yara-python==4.5.1",
+    "docker>=7.1.0",
+    "rich>=13.9.4",
+    "openai>=1.54.3",
+    "python-dotenv>=1.0.1",
+    "requests>=2.32.3",
+    "Jinja2>=3.1.4",
+    "stix2>=3.0.1",
+    "pdfkit",
+    "fpdf2>=2.8.2",
+    "WeasyPrint"
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+valkyrie = "valkyrie.cli.main:cli"
+
+[tool.setuptools.packages.find]
+where = ["src"]

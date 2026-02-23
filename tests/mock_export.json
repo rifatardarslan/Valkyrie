@@ -1,0 +1,18 @@
+{
+  "static": { "target_file": "test.sh", "hashes": {"md5": "123", "sha256": "456"} },
+  "dynamic": {
+    "strace": {
+      "timeline": [
+        {"tick": 1, "action": "Opened File: /etc/passwd", "raw": "openat"},
+        {"tick": 2, "action": "Executed Process: /bin/sh", "raw": "execve"}
+      ]
+    }
+  },
+  "intelligence": {
+    "threat_score": {
+      "score": 45,
+      "label": "Suspicious",
+      "reasons": ["Yara Match (+30)", "High Entropy (+15)"]
+    }
+  }
+}
