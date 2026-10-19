@@ -21,7 +21,8 @@ dependencies = [
     "stix2>=3.0.1",
     "pdfkit",
     "fpdf2>=2.8.2",
-    "WeasyPrint"
+    "WeasyPrint",
+    "pyfiglet>=1.0.0"
 ]
 
 [project.optional-dependencies]

@@ -18,7 +18,8 @@ setup(
         "requests>=2.32.3",
         "Jinja2>=3.1.4",
         "stix2>=3.0.1",
-        "fpdf2>=2.8.2"
+        "fpdf2>=2.8.2",
+        "pyfiglet>=1.0.0"
     ],
     entry_points={
         "console_scripts": [

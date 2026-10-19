@@ -1,8 +1,10 @@
 import os
 import click
+import pyfiglet
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
+from rich.text import Text
 from rich import box
 from valkyrie.modules.static.analyzer import StaticAnalyzer
 from valkyrie.modules.dynamic.analyzer import DynamicAnalyzer
@@ -41,10 +43,40 @@ load_dotenv()
 
 console = Console()
 
-@click.group()
-def cli():
+VERSION = "1.0.0"
+
+
+def print_banner():
+    fig = pyfiglet.figlet_format("VALKYRIE", font="slant")
+    console.print(Text(fig, style="bold red"))
+
+    subtitle = Text()
+    subtitle.append("  Professional Malware Analysis Pipeline  ", style="bold white")
+    subtitle.append(f"v{VERSION}", style="bold red")
+    console.print(subtitle)
+    console.print()
+
+
+def print_menu():
+    menu = Table(box=box.SIMPLE, show_header=False, padding=(0, 2))
+    menu.add_column(style="bold cyan", no_wrap=True)
+    menu.add_column(style="white")
+    menu.add_row("analyze", "Analyze a suspect file (static / dynamic / full)")
+    menu.add_row("vaccine", "Generate a proactive defense vaccine from a report")
+    console.print(Panel(menu, title="[bold red]Commands[/bold red]", border_style="red", box=box.ROUNDED))
+
+    console.print("\n  [dim]Run[/dim]  [bold]valkyrie analyze -f <file> -m full[/bold]")
+    console.print("  [dim]Help[/dim] [bold]valkyrie <command> --help[/bold]\n")
+
+
+@click.group(invoke_without_command=True)
+@click.version_option(VERSION, "-v", "--version", message="Valkyrie v%(version)s")
+@click.pass_context
+def cli(ctx):
     """Valkyrie: Professional-grade CLI Malware Analyzer."""
-    pass
+    if ctx.invoked_subcommand is None:
+        print_banner()
+        print_menu()
 
 @cli.command()
 @click.option('--file', '-f', required=True, type=click.Path(exists=True), help='Path to the suspect file (PE/ELF).')
